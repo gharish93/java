@@ -1,0 +1,30 @@
+import java.util.Arrays;
+
+public class BinarySearchOfSortedArray {
+public static void main(String[] args) {
+	
+	int[] arr= {2,3,4,6,8,10,55,67,78,97,345,4567};
+	System.out.println(search(arr,4567));
+}
+public static boolean search(int[] arr,int b) {
+	if(arr.length==0) return false;
+	int min_len=0;
+	int max_len=arr.length-1;
+	int mid_len=arr.length/2;
+	int mid_value=arr[mid_len];
+	if(b<arr[min_len] || b>arr[max_len]) return false;
+	if(b>mid_value) {
+		int[] slice=Arrays.copyOfRange(arr,mid_len+1,max_len+1);
+		return search(slice,b);
+	}
+	if(b<mid_value) {
+		int[] slice=Arrays.copyOfRange(arr,min_len,mid_len);
+		return search(slice,b);
+	}
+	if(b==mid_value) {
+		
+		return true;
+	}
+return false;
+}
+}
