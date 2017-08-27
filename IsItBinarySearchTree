@@ -1,0 +1,36 @@
+package nyse;
+
+public class IsBinarySearchTree {
+public static void main(String [] args){
+	Node n=new Node(5);
+	Node n1=new Node(7);
+	Node n2=new Node(3);
+	Node n3=new Node(8);
+	Node n4=new Node(6);
+	Node n5=new Node(4);
+	Node n6=new Node(2);
+n.left=n2;
+n.right=n1;
+n1.left=n4;
+n1.right=n3;
+n2.left=n6;
+n2.right=n5;
+System.out.println(check(n));
+}
+public static class Node{
+	int value;
+	Node left;
+	Node right;
+	public Node(int value){
+		this.value=value;
+	}
+}
+public static boolean check(Node n){
+	if(n==null || (n.left==null && n.right==null)) return true;
+	if(n.value>n.left.value && n.value<=n.right.value){
+	boolean a=check(n.left);
+	boolean b=check(n.right);
+	if(a && b) return true;}
+	return false;
+}
+}
