@@ -1,0 +1,66 @@
+package nyse;
+
+import java.util.Stack;
+
+public class LowestCommonAnsister {
+public static void main(String[] args){
+	Node n=new Node(10);
+	Node n1=new Node(11);
+	Node n2=new Node(12);
+	Node n3=new Node(13);
+	Node n4=new Node(14);
+	Node n5=new Node(15);
+	Node n6=new Node(16);
+	Node n7=new Node(17);
+	n.left=n1;
+	n.right=n2;
+	n1.left=n3;
+	n1.right=n4;
+	n2.left=n5;
+	n2.right=n6;
+	n3.left=n7;
+	Stack<Node> st1=findPath(n,15);
+	Stack<Node> st2=findPath(n,17);
+	int x=10;
+    for(int i=0;i<Math.min(st1.size()+1,st2.size()+1);i++){
+    	int n10=st1.pop().value;
+    	int n11=st2.pop().value;
+    	
+    	  if(n10==n11){
+    	    	x=n10;
+    	  }
+    }
+    
+    System.out.println(x);
+	
+}
+public static class Node{
+	int value;
+	Node left;
+	Node right;
+	public Node(int value){
+		this.value=value;
+	}
+}
+public static Stack<Node> findPath(Node n,int a){
+	Stack<Node> st=new Stack<Node>();
+	if(n.value==a) return st;
+	boolean b=check(n,a,st);
+return st;
+}
+public static boolean check(Node n,int a,Stack<Node> st){
+	if(n==null) return false;
+	if(n.value==a){
+		return true;
+	}
+	boolean c=check(n.left,a,st);
+	boolean d=check(n.right,a,st);
+	if(c==true || d==true){
+		st.add(n);
+		return true;
+	}
+	
+	return false;
+	
+}
+}
