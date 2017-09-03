@@ -1,0 +1,86 @@
+ 
+class Solution{
+
+
+public static void main(String[] args){
+int count1=0;
+//create stack object and push elements to stack.
+Stack stack=new Stack();
+  stack.push(2);
+  stack.push(7);
+  stack.push(0);
+  stack.push(3);
+  stack.push(6);
+  stack.print();
+  //calling print method on reversed stack object.
+reverse(stack).print();
+}
+public static Stack reverse(Stack a){
+//if stack is empty we have to return back emediately.
+if(a.isEmpty()){
+return a;}
+//pullout top element in stack.
+int x=a.pop();
+//reverse remaining elements in stack.
+ Stack z=reverse(a);
+ //pussing element to bottum of reversed stack.
+Stack b=reversed(z,x);
+  
+
+return b;
+
+}
+public static Stack reversed(Stack b,int x){
+//if stack is empty then push element.
+  if(b.length()==0){ b.push(x);
+  return b;}
+  //pull top element from stack.
+int y=b.pop();
+//push 'x' to bottum of remaining elements. 
+Stack n=reversed(b,x);
+//then add 'y' to stack again.
+n.push(y);
+return n;
+
+}
+//implimented stack class.
+    private static class Stack{
+//initialize arry to hold stack elements and count to hold current element pointer.
+int[] arr=new int[16];
+     int count=0;
+     //method to push element to stack.
+   void push(int a){
+   //placeing element in arry at current posision of count.
+  this.arr[this.count]=a;
+  //then moving pointer.
+  count++;
+  }
+ // method to print stack.
+      void print(){
+      //printing arry upto before pointer.
+      for(int i=0;i<count;i++){
+      System.out.println(this.arr[i]);}
+       System.out.println(" ");
+      }
+      //method to pop lelement from stack.
+     int pop(){
+     //moveing back pointer by 1 and returning element at that posision in array.
+      this.count--;
+      return this.arr[this.count];
+                                
+        
+  }
+  //method to find length of stack.
+    public int length(){
+    //returning the count as arr length.
+      return this.count;
+    }
+    //isempty method for stack.to find stack is empty or not.
+   public boolean isEmpty(){
+   //if count==0 we have to return true as because array is empty.
+   if(this.count==0){return true;}
+     return false;
+   
+  }
+}
+}
